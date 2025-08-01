@@ -1,0 +1,6 @@
+joblib
+jupyter
+pandas
+sentence-transformers
+streamlit
+torch
