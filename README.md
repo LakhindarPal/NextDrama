@@ -1,42 +1,43 @@
-# 🎬 NextEpisode
+# 🎬 NextDrama
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://nextepisode.streamlit.app)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://nextdrama.streamlit.app)
 [![Kaggle Dataset](https://img.shields.io/badge/Dataset-Kaggle-blue?logo=kaggle)](https://www.kaggle.com/datasets/lakhindarpal/asian-drama-dataset)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**NextEpisode** is a content-based recommendation system that helps users find similar Asian dramas, movies, specials, and TV shows based on deep semantic similarity using Sentence Transformers.
+**NextDrama** is a content-based recommendation system for Asian dramas, movies, specials, and TV shows. It leverages deep semantic similarity using Sentence Transformers to suggest similar titles based on what you love — no user history required.
 
-> 🌐 **Live Demo:** [nextepisode.streamlit.app](https://nextepisode.streamlit.app)
+> 🌐 **Live Demo:** [nextdrama.streamlit.app](https://nextdrama.streamlit.app)
 
 ---
 
 ## 🔍 Features
 
-- ✅ Deep semantic matching using `all-mpnet-base-v2` from Sentence Transformers
-- ✅ Smart content-based recommendations (no user history required)
-- ✅ Filter by genre, country, type, tags, and release year
-- ✅ Clean, responsive UI with dynamic card layouts
-- ✅ Clickable cards reveal full metadata and synopsis
-- ✅ Optimized with cosine similarity for 20,000+ items
+- 🤖 Semantic similarity with `all-mpnet-base-v2` from Sentence Transformers
+- 🧠 Content-based recommendations — no collaborative filtering needed
+- 🎛️ Filter by genre, country, type, rating, tags, and release year
+- 🖼️ Interactive UI with responsive grid layouts
+- 🪪 Card-based display with full metadata: cast, synopsis, creators, etc.
+- ⚡ Fast cosine similarity search over 20,000+ media embeddings
 
 ---
 
 ## 📦 Dataset
 
-This project uses the [Asian Drama Dataset on Kaggle](https://www.kaggle.com/datasets/lakhindarpal/asian-drama-dataset), including:
+The system is powered by the [Asian Drama Dataset on Kaggle](https://www.kaggle.com/datasets/lakhindarpal/asian-drama-dataset), which includes:
 
-- 20,000+ metadata entries for dramas, movies, specials, and TV shows
-- Rich features: tags, cast, genres, synopsis, scores, network, release data
-- Fully cleaned and preprocessed for NLP tasks
+- Over **20,000** titles with rich metadata
+- Fields like title, synopsis, cast, genres, tags, score, country, and network
+- Preprocessed and ready for NLP tasks or recommender systems
 
 ---
 
 ## 🧠 Model & Recommendation Strategy
 
-- **Embedding model**: [`sentence-transformers/all-mpnet-base-v2`](https://www.sbert.net/)
-- **Text input**: A "soup" combining title, synopsis, genre, tags, cast, creators, etc.
-- **Similarity**: Cosine similarity computed using `sentence_transformers.util.cos_sim`
-- **Validation**: Ground-truth recommendation pairs used for offline evaluation
+- **Embedding Model**: [`all-mpnet-base-v2`](https://www.sbert.net/)
+- **Input Text**: A combined "soup" of title, synopsis, genres, tags, cast, and directors
+- **Similarity Metric**: Cosine similarity via `sentence_transformers.util.cos_sim`
+- **Inference**: Fast top-k search with PyTorch tensors
+- **Evaluation**: 80,000+ human-labeled positive recommendation pairs for recall@K evaluation
 
 ---
 
@@ -44,8 +45,8 @@ This project uses the [Asian Drama Dataset on Kaggle](https://www.kaggle.com/dat
 
 ```bash
 # Clone the repository
-git clone https://github.com/lakhindarpal/NextEpisode.git
-cd NextEpisode
+git clone https://github.com/lakhindarpal/NextDrama.git
+cd NextDrama
 
 # Install dependencies
 pip install -r requirements.txt
@@ -54,7 +55,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-You can also load the precomputed embeddings and data using:
+You can also manually load the precomputed data:
 
 ```python
 import joblib
@@ -67,7 +68,7 @@ embeddings = joblib.load("embeddings.pkl")
 
 ## 🖼️ UI Preview
 
-> 📌 _Click on a title card to view full information like synopsis, cast, genres, network, episodes, and more._
+> 📌 Click on a title card to reveal full information including synopsis, cast, tags, genres and more.
 
 | 📱 Mobile                              | 💻 Desktop                               |
 | -------------------------------------- | ---------------------------------------- |
@@ -77,28 +78,30 @@ embeddings = joblib.load("embeddings.pkl")
 
 ## 🧪 Evaluation
 
-While the system uses cosine similarity over transformer embeddings, the 80,000 human-labeled positive recommendation pairs can be used for validation using metrics like recall\@K.
+The current model uses cosine similarity over transformer-based embeddings. Evaluation can be performed offline using the 80K labeled recommendation pairs and metrics like **Recall\@K**.
 
 ---
 
 ## ☁️ Deployment
 
-This app is live on [Streamlit Cloud](https://nextepisode.streamlit.app).
-You can also deploy with:
+Currently live on **Streamlit Cloud**:
+👉 [nextdrama.streamlit.app](https://nextdrama.streamlit.app)
 
-- 🔹 Docker
-- 🔹 Hugging Face Spaces
-- 🔹 Self-hosting with Streamlit Sharing
+You can also deploy on:
+
+- 🐳 Docker
+- 🤗 Hugging Face Spaces
+- 🔧 Self-hosting or private servers
 
 ---
 
 ## 🛠 Tech Stack
 
-- [Streamlit](https://streamlit.io/) for the frontend
-- [SentenceTransformers](https://www.sbert.net/) for embeddings
-- [PyTorch](https://pytorch.org/) for tensor ops
-- [Joblib](https://joblib.readthedocs.io/) for model persistence
-- [Pandas](https://pandas.pydata.org/) for data handling
+- [Streamlit](https://streamlit.io/) — frontend framework
+- [SentenceTransformers](https://www.sbert.net/) — semantic embeddings
+- [PyTorch](https://pytorch.org/) — tensor computation
+- [Joblib](https://joblib.readthedocs.io/) — model/data persistence
+- [Pandas](https://pandas.pydata.org/) — data handling
 
 ---
 
@@ -108,10 +111,10 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
-## 🤝 Acknowledgements
+## 🙌 Acknowledgements
 
 - [Sentence Transformers](https://www.sbert.net/)
-- [Streamlit](https://streamlit.io)
+- [Streamlit](https://streamlit.io/)
 - [Hugging Face](https://huggingface.co/)
 - [Kaggle Dataset](https://www.kaggle.com/datasets/lakhindarpal/asian-drama-dataset)
 
@@ -119,4 +122,5 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ## 💬 Feedback
 
-Feel free to open an [issue](https://github.com/lakhindarpal/NextEpisode/issues) or drop feedback for feature requests and improvements!
+Found a bug? Have a suggestion?
+Open an [issue](https://github.com/lakhindarpal/NextDrama/issues) or drop feedback for improvements!
